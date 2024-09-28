@@ -1,10 +1,7 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
-import random
+from tkinter import ttk
 import requests
-import serial
 import time
-import os
 import threading
 from scapy.all import sniff, DNS, DNSQR
 
