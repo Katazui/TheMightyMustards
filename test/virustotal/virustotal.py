@@ -46,9 +46,11 @@ def check_domain(domain):
             result = response.json()
             if result.get('positives', 0) > 0:
                 print(f"{MSG_ERROR}{domain} is blocked!")
+                arduino.write(b'G')
                 return True
             else:
                 print(f"{MSG_SUCCESS}{domain} is clean.")
+                arduino.write(b'R')
                 return False
         except ValueError:
             print("Error parsing JSON response from VirusTotal.")
@@ -59,6 +61,7 @@ def check_domain(domain):
         if response.text:
             if DEBUG == True: 
                 print(f"{MSG_DEBUG}Response Content:", response.text)
+        arduino.write(b'Y')
         return False
 
 def read_domains_from_file(file_path):
@@ -104,6 +107,7 @@ def check_http_https(domain):
     except requests.RequestException as e:
         # print(f"HTTPS check failed for {domain}: {e}")
         https_available = False
+        
 
     if DEBUG == True: 
         print(f"{MSG_DEBUG}HTTP Available: {http_available}, HTTPS Available: {https_available}")
