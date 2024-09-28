@@ -179,7 +179,7 @@ navbar = tk.Frame(root, bg="#3e3e3e", height=50)
 navbar.pack(fill="x")
 
 # Navigation Bar
-nav_label = tk.Label(navbar, text="Malicous Network Detection Dashboard", fg="white", bg="#3e3e3e", font=("Helvetica", 16))
+nav_label = tk.Label(navbar, text="Malicious Network Detection Dashboard", fg="white", bg="#3e3e3e", font=("Helvetica", 16))
 nav_label.pack(pady=10)
 
 # Welcome Section
@@ -187,9 +187,9 @@ welcome_frame = tk.LabelFrame(root, text="The Mighty Mustard", font=("Helvetica"
 welcome_frame.pack(fill="x", padx=20, pady=10)
 
 # Welcome message
-welcome_message = ttk.Label(welcome_frame, text="Welcome to the Malicous Network Detection.\n\n"
+welcome_message = ttk.Label(welcome_frame, text="Welcome to the Malicious Network Detection.\n\n"
                                                "Use the Control Panel on the left to start sniffing internet traffic.\n"
-                                               "The system will monitor every traffic request against VirusTotal to check if the request was malicous.")
+                                               "The system will monitor every traffic request against VirusTotal to check if the request was Malicious.")
 welcome_message.pack()
 
 # Main Frame
