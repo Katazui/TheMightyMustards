@@ -3,6 +3,7 @@ from tkinter import ttk
 import requests
 import time
 import threading
+import serial
 from scapy.all import sniff, DNS, DNSQR
 
 # Configuration
@@ -14,7 +15,7 @@ PACKETS_BLOCKED = 0
 PACKETS_ALLOWED = 0
 
 # Set up communication with Arduino
-# arduino = serial.Serial('/dev/cu.usbmodemXXXX', 9600, timeout=1)
+arduino = serial.Serial('/dev/cu.usbmodem11301', 9600, timeout=1)
 
 # VirusTotal API Configuration
 API_KEY = '3c0482bf9d3af7edf8eed1f5d74f36abeeaa9b3027e364bd8b2f0fff020881ce'
@@ -54,23 +55,27 @@ def check_domain(domain):
             if result.get('positives', 0) > 0:
                 print(f"{MSG_ERROR}{domain} is blocked!")
                 send_command('BLOCK_IP\n', domain)
-                # arduino.write(b'G')
+                arduino.write(b'R')
                 return True
             else:
                 print(f"{MSG_SUCCESS}{domain} is clean.")
                 send_command('ALLOW_IP\n', domain)
-                # arduino.write(b'R')
+                arduino.write(b'G')
                 return False
         except ValueError:
             print("Error parsing JSON response from VirusTotal.")
             print("Response Content:", response.text)  # Debug statement
+            arduino.write(b'B')
+            packet_blocked()
             return False
     else:
         print(f"{MSG_ERROR}Error querying VirusTotal for {domain}: {response.status_code}")
+        update_traffic_label(f"Invalid Domain: {domain}")
         if response.text:
             if DEBUG == True: 
                 print(f"{MSG_DEBUG}Response Content:", response.text)
-        # arduino.write(b'Y')
+        arduino.write(b'B')
+        packet_blocked()
         return False
 
 # Check if a domain supports HTTP/HTTPS
@@ -138,6 +143,11 @@ def send_command(command, domain):
     elif command == 'ALLOW_IP\n':
         PACKETS_ALLOWED += 1
         update_traffic_label(f"Allowed Domain: {domain}")
+    update_packet_count()
+
+def packet_blocked():
+    global PACKETS_BLOCKED
+    PACKETS_BLOCKED += 1
     update_packet_count()
 
 # Function to update the packet count display
