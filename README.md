@@ -10,31 +10,29 @@ pip install pyserial
 
 ## Inspiration
 
-Tired of trackers? Ever wondered
+Our project was inspired by concerns about data privacy and online safety. Users often wonder if the websites they visit are tracking them or potentially posing a threat. We wanted to create a tool that provides real-time visibility and alerts about the safety of internet traffic.
 
 ## What it does
 
-The Malicious Network Detector will notify the user while browsing if the incoming request is a malicious threat or not. The GUI will track the numbers of blocked or allowed traffic. As network traffic is coming in, the hardware will buzz to notify the user of the traffic, and there will be green for allowed traffic, red for blocked traffic, and blue for other network traffic.
+The Malicious Network Detector identifies and alerts users when incoming network requests are deemed a threat. It uses a combination of software and hardware, with a visual indicator and buzzer to notify users when malicious or safe traffic is detected.
 
 ## How we built it
 
-- Arduino fitted with the functions to activate LED lights (3 modes), a buzzer, and a stepper motor
-- Personal Computer with Python running code to the Arduino
-- VirusTotal API
+We built the project using an Arduino for controlling LED lights (green for allowed, red for blocked, and blue for status), a buzzer, and a stepper motor. The Arduino is connected to a PC running Python, which handles the network traffic analysis and communication with the Arduino to provide real-time feedback.
 
 ## Challenges we ran into
 
 - Limited supply.
-- API Limitations.
+- USB C to USB A Converters.
 
 ## Accomplishments that we're proud of
 
-- First ever Hackathon for every member
+- First ever Hackathon for every member.
 
 ## What we learned
 
-- Learning how to use Arduino
+- Learning how to use Arduino.
 
 ## What's next for Malicious Network Detector
 
-- Maybe a full product with your support?
+- Maybe a full product with your support.
