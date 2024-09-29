@@ -15,6 +15,15 @@ const int stepsPerRevolution = 100;
 // Initialize the motor 
 Stepper myStepper(stepsPerRevolution, 6, 7, 8, 9);
 
+void motorized_delay(int n){
+    n = n/10;
+
+    for(int i = 0; i < n; i++){
+        myStepper.step(stepsPerRevolution);
+        delay(10);
+    }
+}
+
 void redLight() {
     // Blink red LED
     beepBuzzer();
@@ -26,7 +35,7 @@ void redLight() {
     delay(delay_slow);
     digitalWrite(speaker, HIGH);
     delay(delay_slow);
-    turnMotor();
+    motorized_delay(delay_slow);
 }
 
 void greenLight() {
@@ -35,8 +44,7 @@ void greenLight() {
     digitalWrite(blue, LOW);  // Ensure LED is off
     delay(delay_time);  // Adjust delay for blinking
     digitalWrite(green, LOW);
-    turnMotor();
-
+    motorized_delay(delay_slow);
 }
 
 void blueLight() {
@@ -45,7 +53,7 @@ void blueLight() {
     digitalWrite(green, LOW);  // Ensure LED is off
     delay(delay_time);  // Adjust delay for blinking
     digitalWrite(blue, LOW);
-    turnMotor();
+    motorized_delay(delay_slow);
 }
 
 void turnMotor() {
