@@ -15,7 +15,7 @@ PACKETS_BLOCKED = 0
 PACKETS_ALLOWED = 0
 
 # Set up communication with Arduino
-arduino = serial.Serial('/dev/cu.usbmodem11301', 9600, timeout=1)
+arduino = serial.Serial('/dev/cu.usbmodem101', 9600, timeout=1)
 
 # VirusTotal API Configuration
 API_KEY = '3c0482bf9d3af7edf8eed1f5d74f36abeeaa9b3027e364bd8b2f0fff020881ce'

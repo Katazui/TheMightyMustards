@@ -17,9 +17,7 @@ Stepper myStepper(stepsPerRevolution, 6, 7, 8, 9);
 
 void redLight() {
     // Blink red LED
-    digitalWrite(speaker, HIGH);
-    delay(delay_slow);
-    digitalWrite(speaker, LOW);
+    beepBuzzer();
     digitalWrite(red, HIGH);
     digitalWrite(green, LOW);  // Ensure green LED is off
     digitalWrite(blue, LOW);  // Ensure LED is off
@@ -32,10 +30,6 @@ void redLight() {
 }
 
 void greenLight() {
-    // Blink green LED
-    digitalWrite(speaker, HIGH);
-    delay(delay_slow);
-    digitalWrite(speaker, LOW);
     digitalWrite(green, HIGH);
     digitalWrite(red, LOW);  // Ensure LED is off
     digitalWrite(blue, LOW);  // Ensure LED is off
@@ -46,9 +40,6 @@ void greenLight() {
 }
 
 void blueLight() {
-    digitalWrite(speaker, HIGH);
-    delay(delay_slow);
-    digitalWrite(speaker, LOW);
     digitalWrite(blue, HIGH);
     digitalWrite(red, LOW);  // Ensure LED is off
     digitalWrite(green, LOW);  // Ensure LED is off
@@ -59,11 +50,17 @@ void blueLight() {
 
 void turnMotor() {
   myStepper.step(stepsPerRevolution);
-  digitalWrite(6, HIGH);  // Move one full revolution forward
-  digitalWrite(7, HIGH);
-  digitalWrite(8, HIGH);
-  digitalWrite(9,HIGH);
+  // digitalWrite(6, HIGH);  // Move one full revolution forward
+  // digitalWrite(7, HIGH);
+  // digitalWrite(8, HIGH);
+  // digitalWrite(9,HIGH);
   delay(250);
+}
+
+void beepBuzzer() {
+    digitalWrite(speaker, HIGH);
+    delay(delay_slow);
+    digitalWrite(speaker, LOW);
 }
 
 void setup() {
